@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: jmn-prod-apps
+  namespace: zoneb-argocd
+spec:
+  description: scoped jmn-prod
+  sourceNamespaces:
+  - zoneb-argocd
+
+  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  namespaceResourceBlacklist:
+  - group: ''
+    kind: ResourceQuota
+  - group: ''
+    kind: LimitRange
+  - group: ''
+    kind: NetworkPolicy
+  # - ...
+
+  # Allow manifests to deploy from any Git repos
+  # sourceRepos:
+  # - '!https://github.com/Sphinxgaia/argocd-multi-tenant/**/prod'
+  # - 'https://github.com/Sphinxgaia/jmn-dev/**'
+  destinations:
+  - server: kind-wescale-zoneb-app2
+    namespace: jmn-prod

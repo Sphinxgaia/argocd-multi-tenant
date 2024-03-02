@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: jmn-dev-apps
+  namespace: zonea-argocd
+  labels:
+    argocd.argoproj.io/managed-by: zonea-argocd
+spec:
+  description: scoped jmn-dev
+  sourceNamespaces:
+  - zonea-argocd
+
+  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  # namespaceResourceBlacklist:
+  # - group: ''
+  #   kind: ResourceQuota
+  # - group: ''
+  #   kind: LimitRange
+  # - group: ''
+  #   kind: NetworkPolicy
+  # - ...
+
+  # Allow manifests to deploy from any Git repos
+  sourceRepos:
+  - '!https://github.com/Sphinxgaia/argocd-multi-tenant/**/prod'
+  - 'https://github.com/Sphinxgaia/jmn-dev/**'
+  - 'https://github.com/'
+  destinations:
+  - name: kind-wescale-zonea-app1
+    namespace: jmn-dev

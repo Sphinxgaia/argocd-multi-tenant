@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: debug
+  name: debug
+  namespace: zoneb-argocd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: debug
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: debug
+    spec:
+      containers:
+      - args:
+        - |-
+          apk add curl jq openssl bash bind-tools
+          sleep infinity
+        command:
+        - /bin/sh
+        - -c
+        image: alpine:3.18
+        name: alpine

@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: jmn-dev-apps
+  namespace: argocd
+spec:
+  description: scoped jmn-prod
+  sourceNamespaces:
+  - jmn-dev
+
+  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  namespaceResourceBlacklist:
+  - group: ''
+    kind: ResourceQuota
+  - group: ''
+    kind: LimitRange
+  - group: ''
+    kind: NetworkPolicy
+  # - ...
+
+  # Allow manifests to deploy from any Git repos
+  sourceRepos:
+  - '!https://github.com/Sphinxgaia/argocd-multi-tenant/**/prod'
+  - 'https://github.com/Sphinxgaia/jmn-dev/**'
+  destinations:
+  - server: https://kubernetes.default.svc
+    namespace: jmn-dev

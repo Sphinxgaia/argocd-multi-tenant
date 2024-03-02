@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: project-manager-app2
+  namespace: zoneb-argocd
+spec:
+  description: scoped project / ns
+  # Mono argocd
+  # sourceNamespaces:
+  # - "*-infra"
+  
+  # Allow manifests to deploy from any Git repos
+  sourceRepos:
+  - 'https://github.com/argoproj/argocd-example-apps.git'
+  
+  namespaceResourceWhitelist:
+  - group: ''
+    kind: Namespace
+  - group: ''
+    kind: Application
+
+  destinations:
+  - namespace: '!kube-system'
+    server: 'https://kubernetes.default.svc'
+  - namespace: '!infra-*'
+    server: 'https://kubernetes.default.svc'
+  - namespace: '*-infra'
+    server: 'kind-wescale-zoneb-app2'
