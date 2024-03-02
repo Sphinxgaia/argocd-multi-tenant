@@ -11,8 +11,8 @@ spec:
     targetRevision: dev
     path: apps/jmn/dev
   destination:
-    name: kind-wescale-zonea-app1
-    namespace: jmn-dev
+    server: https://kubernetes.default.svc
+    namespace: zonea-argocd
   syncPolicy:
     automated: # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.
       prune: true # Specifies if resources should be pruned during auto-syncing ( false by default ).
