@@ -23,5 +23,4 @@ spec:
         - ipBlock:
             cidr: 0.0.0.0/0
             except:
-              - 172.22.0.4/32
-              - 172.22.0.5/32 # aka kind-wescale-zoneb-app2
+              - 172.22.0.4/32 # aka kind-wescale-zoneb-app2

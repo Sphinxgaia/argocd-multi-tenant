@@ -10,12 +10,13 @@ spec:
   # - "*-infra"
   # Allow manifests to deploy from any Git repos
   sourceRepos:
-  - 'https://github.com/argoproj/argocd-example-apps.git'
-  
-  namespaceResourceWhitelist:
-  - group: ''
+  - 'https://github.com/Sphinxgaia/argocd-multi-tenant.git'
+  clusterResourceWhitelist:
+  - group: '*'
     kind: Namespace
-  - group: ''
+    
+  namespaceResourceWhitelist:
+  - group: '*'
     kind: Application
 
   destinations:
@@ -23,5 +24,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   - namespace: '!infra-*'
     server: 'https://kubernetes.default.svc'
-  - namespace: '*-infra'
+  - namespace: 'zonea-argocd'
+    server: 'https://kubernetes.default.svc'
+  - namespace: '*'
     name: 'kind-wescale-zonea-app1'
