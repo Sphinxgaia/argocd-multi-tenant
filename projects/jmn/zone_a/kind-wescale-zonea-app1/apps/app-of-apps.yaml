@@ -8,7 +8,7 @@ spec:
   project: project-manager-app1
   source:
     repoURL: https://github.com/Sphinxgaia/argocd-multi-tenant.git
-    targetRevision: HEAD
+    targetRevision: dev
     path: apps/jmn/dev
   destination:
     name: kind-wescale-zonea-app1
@@ -18,5 +18,5 @@ spec:
       prune: true # Specifies if resources should be pruned during auto-syncing ( false by default ).
       selfHeal: true # Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).
       allowEmpty: false # Allows deleting all application resources during automatic syncing ( false by default ).
-    syncOptions:     # Sync options which modifies sync behavior
-    - CreateNamespace=true # Namespace Auto-Creation ensures that namespace specified as the application destination exists in the destination cluster.
+    # syncOptions:     # Sync options which modifies sync behavior
+    # - CreateNamespace=true # Namespace Auto-Creation ensures that namespace specified as the application destination exists in the destination cluster.
