@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/Sphinxgaia/argocd-multi-tenant.git
     targetRevision: dev
-    path: projects/jmn/zone_b/kind-wescale-zoneb-app1/apps
+    path: projects/jmn/zone_b/kind-wescale-zoneb-app2/apps
   destination:
     server: https://kubernetes.default.svc
     namespace: zoneb-argocd
@@ -31,9 +31,9 @@ spec:
   source:
     repoURL: https://github.com/Sphinxgaia/argocd-multi-tenant.git
     targetRevision: dev
-    path: projects/jmn/zone_b/kind-wescale-zoneb-app1/ns
+    path: projects/jmn/zone_b/kind-wescale-zoneb-app2/ns
   destination:
-    name: kind-wescale-zoneb-app1
+    name: kind-wescale-zoneb-app2
     namespace: jmn-prod
   syncPolicy:
     automated: # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.
