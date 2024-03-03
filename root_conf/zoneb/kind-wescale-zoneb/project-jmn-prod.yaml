@@ -19,9 +19,10 @@ spec:
   # - ...
 
   # Allow manifests to deploy from any Git repos
-  # sourceRepos:
-  # - '!https://github.com/Sphinxgaia/argocd-multi-tenant/**/prod'
-  # - 'https://github.com/Sphinxgaia/jmn-dev/**'
+  sourceRepos:
+  - '!https://github.com/Sphinxgaia/argocd-multi-tenant/**/prod'
+  - 'https://github.com/Sphinxgaia/jmn-dev/**'
+  - 'https://github.com/'
   destinations:
-  - server: kind-wescale-zoneb-app2
+  - name: kind-wescale-zoneb-app2
     namespace: jmn-prod
