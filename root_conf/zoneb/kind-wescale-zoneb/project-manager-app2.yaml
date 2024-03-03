@@ -11,7 +11,7 @@ spec:
   
   # Allow manifests to deploy from any Git repos
   sourceRepos:
-  - 'https://github.com/argoproj/argocd-example-apps.git'
+  - 'https://github.com/Sphinxgaia/argocd-multi-tenant.git'
   clusterResourceWhitelist:
   - group: '*'
     kind: Namespace
