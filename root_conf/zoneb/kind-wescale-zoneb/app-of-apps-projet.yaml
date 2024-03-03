@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kind-wescale-zonea-project
+  name: kind-wescale-zoneb-project
   namespace: zoneb-argocd
 spec:
   project: project-manager-app2
