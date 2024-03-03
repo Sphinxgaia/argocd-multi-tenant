@@ -28,5 +28,5 @@ spec:
     server: 'https://kubernetes.default.svc'
   - namespace: 'zoneb-argocd'
     server: 'https://kubernetes.default.svc'
-  - namespace: '*-infra'
+  - namespace: '*'
     server: 'kind-wescale-zoneb-app2'
