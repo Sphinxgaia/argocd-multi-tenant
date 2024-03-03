@@ -110,6 +110,12 @@ Install argocd zone b
 kubectl apply -n zoneb-argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/namespace-install.yaml
 ```
 
+Patch clsuterrolebinding if zone manage themselves 
+
+```sh
+kubectl apply -f argocd-install/clusterrolebinding.yaml
+```
+
 
 ## Create kind clusters
 
@@ -129,19 +135,36 @@ export KUBECONFIG=$(pwd)/wescale-zoneb-app2.yaml
 kind create cluster --name wescale-zoneb-app2
 ```
 
-## Config
+## Config (TBU)
+
 
 ArgoCD Config
 
-1. Create app of apps (Project and Tenant Management)
+1. Create app of apps (Self Management)
 
-Tenant config:
+Env config:
 
-1. Create project tenant
-2. Create ns/quota (config tenant)
-3. Create app of apps tenant
+1. Create project tenant + project dev
+2. Create ns/quota (destination)
+3. Create app of apps env
 4. Create app
 
+Update self management cluster zonea
+
+```sh
+kubectl apply -f root_conf/zonea/kind-wescale-zonea/project-manager-zonea.yaml
+kubectl apply -f root_conf/zonea/kind-wescale-zonea/app-of-apps-infra.yaml
+```
+
+
+Update self management cluster zoneb
+
+```sh
+kubectl apply -f root_conf/zoneb/kind-wescale-zoneb/project-manager-zoneb.yaml
+kubectl apply -f root_conf/zoneb/kind-wescale-zoneb/app-of-apps-infra.yaml
+```
 
 
 ## RBAC Isolation (TBD)
+
+## Manage secrets with Vault (TBD)
