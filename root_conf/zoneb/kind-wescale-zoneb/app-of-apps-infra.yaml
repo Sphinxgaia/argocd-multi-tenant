@@ -8,7 +8,7 @@ spec:
   project: project-manager-zoneb
   source:
     repoURL: https://github.com/Sphinxgaia/argocd-multi-tenant.git
-    targetRevision: HEAD
+    targetRevision: dev
     path: root_conf/zoneb/kind-wescale-zoneb
   destination:
     server: https://kubernetes.default.svc

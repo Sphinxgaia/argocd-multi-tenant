@@ -20,26 +20,19 @@ This project aims to use only one ArgoCD and secure a project tenant.
 kubectl create ns argocd
 ```
 
-Use external isntaller (to be up to date - `patch needed`)
+Use external installer (to be up to date - `patch needed`)
 
 ```sh
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
-or already patched (sigle argocd mode)
+or already patched (single argocd mode)
 
 ```sh
 kubectl apply -n argocd -f argocd-install/install.yaml
 ```
 
-
-> Connect locally to argocd server 
-
-get admin password
-
-```sh
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
-```
+### Connect locally to argocd server 
 
 ingress
 
@@ -47,10 +40,21 @@ ingress
 kubectl apply -f argocd-install/ingress.yaml
 ```
 
+or 
+
+
 port-forward
 
 ```sh
 kubectl port-forward -n argocd service/argocd-server 8443:443
+```
+
+
+
+get admin password
+
+```sh
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
 ```
 
 
@@ -116,6 +120,19 @@ Patch clsuterrolebinding if zone manage themselves
 kubectl apply -f argocd-install/clusterrolebinding.yaml
 ```
 
+Get passwords
+
+```sh
+kubectl -n zonea-argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo "\n"
+kubectl -n zoneb-argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo "\n"
+```
+
+Test connection
+
+```sh
+kubectl -n zonea-argocd apply -f root_conf/zonea/kind-wescale-zonea/ingress.yaml 
+kubectl -n zoneb-argocd apply -f root_conf/zoneb/kind-wescale-zoneb/ingress.yaml 
+```
 
 ## Create kind clusters
 
