@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: jmn-prod
+  labels: # The labels to set on the application namespace
+    any: label
+    you: like
+  annotations: # The annotations to set on the application namespace
+    the: same
+    applies: for
+    annotations: on-the-namespace
